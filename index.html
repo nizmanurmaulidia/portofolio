@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIZMA NUR MAULIDIA</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+   
+</head>
+
+<body>
+    <h2 class="typewrite text-white" data-period="2000" data-type='[ "HELLO","WELCOME TO MY PORTFOLIO" ]'>
+        <span class="wrap">Hello, World!.</span>
+    </h2>
+    <script>
+        var TxtType = function(el, toRotate, period) {
+        this.toRotate = toRotate;
+        this.el = el;
+        this.loopNum = 0;
+        this.period = parseInt(period, 10) || 2000;
+        this.txt = '';
+        this.tick();
+        this.isDeleting = false;
+        };
+        
+        TxtType.prototype.tick = function() {
+        var i = this.loopNum % this.toRotate.length;
+        var fullTxt = this.toRotate[i];
+        
+        if (this.isDeleting) {
+        this.txt = fullTxt.substring(0, this.txt.length - 1);
+        } else {
+        this.txt = fullTxt.substring(0, this.txt.length + 1);
+        }
+        
+        this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+        
+        var that = this;
+        var delta = 200 - Math.random() * 100;
+        
+        if (this.isDeleting) { delta /= 2; }
+        
+        if (!this.isDeleting && this.txt === fullTxt) {
+        delta = this.period;
+        this.isDeleting = true;
+        } else if (this.isDeleting && this.txt === '') {
+        this.isDeleting = false;
+        this.loopNum++;
+        delta = 500;
+        }
+        
+        setTimeout(function() {
+        that.tick();
+        }, delta);
+        };
+        
+        window.onload = function() {
+        var elements = document.getElementsByClassName('typewrite');
+        for (var i=0; i<elements.length; i++) {
+        var toRotate = elements[i].getAttribute('data-type');
+        var period = elements[i].getAttribute('data-period');
+        if (toRotate) {
+        new TxtType(elements[i], JSON.parse(toRotate), period);
+        }
+        }
+        // INJECT CSS
+        var css = document.createElement("style");
+        css.type = "text/css";
+        css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+        document.body.appendChild(css);
+        };
+    </script>
+
+    
+    <div clas="main">
+        <div class="img"></div>
+        <h1>Nizma nur maulidia</h1>
+        <div class="text">FROM <strong>BOGOR,JAWA BARAT</strong></div>
+        <p>
+            saya adalah seorang mahasiswa yang bersekolah
+            di smkn 4 bogor saya masuk kejuruan pengembangan perangkat lunak dan game</p>
+        <div class="info"> 
+            <p>DATA DIRI</p>
+            <P>NAMA:Nizma nur maulidia</P>
+            <p>TANGGAL LAHIR:05-05-2006</p>
+            <p>ALAMAT:kp.muara gg.babadak Rw01/Rw08</p>
+            </div>
+        <ul>
+            <li><a href="#"><img src="img.jpeg" width="25px" height="25px>"></a></li>
+            <li><a href="#"><img src="jgp.jpeg" width="25px" height="25px>"></a></li>
+        </ul>
+    </div>
+    <br>
+    <!---bagian portfolio-->
+    <section id="portfolio">
+        <div class="container"></div>
+        <h3>Portfolio</h3>
+        <div class="col-2">
+            <a href="">
+                <img src="ke.jpg">
+                <span>foto 1</span>
+            </a>
+        </div>
+        <div class="col-2">
+            <a href="">
+                <img src="po.jpg">
+                <span>foto 2</span>
+            </a>
+        </div>
+        <div class="col-2">
+            <a href="">
+                <img src="ki.jpg">
+                <span>foto 3</span>
+            </a>
+        </div>
+        <div class="col-2">
+            <a href="">
+                <img src="ja.JPG">
+                <span>foto 4</span>
+            </a>
+        </div>
+    </section>
+</body>
+</html>
